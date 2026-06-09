@@ -3,10 +3,20 @@ import Box from '@mui/material/Box'
 import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
 import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import FlightIcon from '@mui/icons-material/Flight'
 import HotelIcon from '@mui/icons-material/Hotel'
 import styles from './SearchBox.module.scss'
+
+function Field({ label, ...props }) {
+  return (
+    <Box className={styles.fieldGroup}>
+      <Typography component="label" className={styles.fieldLabel}>{label}</Typography>
+      <TextField variant="outlined" size="small" className={styles.field} fullWidth {...props} />
+    </Box>
+  )
+}
 
 export default function SearchBox() {
   const [tab, setTab] = useState(0)
@@ -26,20 +36,30 @@ export default function SearchBox() {
       <Box className={styles.form}>
         {tab === 0 && (
           <>
-            <TextField label="From" placeholder="City or airport" variant="outlined" size="small" className={styles.field} />
-            <TextField label="To" placeholder="City or airport" variant="outlined" size="small" className={styles.field} />
-            <TextField label="Departure" type="date" variant="outlined" size="small" className={styles.field} InputLabelProps={{ shrink: true }} />
-            <TextField label="Return" type="date" variant="outlined" size="small" className={styles.field} InputLabelProps={{ shrink: true }} />
-            <TextField label="Passengers" type="number" placeholder="1" variant="outlined" size="small" className={styles.fieldNarrow} inputProps={{ min: 1 }} />
+            <Box className={styles.row}>
+              <Field label="From" placeholder="City or airport" />
+              <Field label="To" placeholder="City or airport" />
+            </Box>
+            <Box className={styles.row}>
+              <Field label="Departure" type="date" inputProps={{ placeholder: '' }} onClick={(e) => e.currentTarget.querySelector('input')?.showPicker()} />
+              <Field label="Return" type="date" inputProps={{ placeholder: '' }} onClick={(e) => e.currentTarget.querySelector('input')?.showPicker()} />
+            </Box>
+            <Box className={styles.row}>
+              <Field label="Passengers" type="number" inputProps={{ min: 1 }} />
+            </Box>
           </>
         )}
 
         {tab === 1 && (
           <>
-            <TextField label="Destination" placeholder="City or hotel" variant="outlined" size="small" className={styles.fieldWide} />
-            <TextField label="Check-in" type="date" variant="outlined" size="small" className={styles.field} InputLabelProps={{ shrink: true }} />
-            <TextField label="Check-out" type="date" variant="outlined" size="small" className={styles.field} InputLabelProps={{ shrink: true }} />
-            <TextField label="Guests" type="number" placeholder="1" variant="outlined" size="small" className={styles.fieldNarrow} inputProps={{ min: 1 }} />
+            <Box className={styles.row}>
+              <Field label="Destination" placeholder="City or hotel" />
+              <Field label="Guests" type="number" inputProps={{ min: 1 }} />
+            </Box>
+            <Box className={styles.row}>
+              <Field label="Check-in" type="date" inputProps={{ placeholder: '' }} onClick={(e) => e.currentTarget.querySelector('input')?.showPicker()} />
+              <Field label="Check-out" type="date" inputProps={{ placeholder: '' }} onClick={(e) => e.currentTarget.querySelector('input')?.showPicker()} />
+            </Box>
           </>
         )}
 

@@ -4,17 +4,11 @@
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   width: 100%;
-  max-width: 780px;
-  margin-top: 2.5rem;
 }
 
 .tabs {
   background-color: #f0f2f8;
   min-height: unset !important;
-
-  .MuiTabs-root {
-    min-height: unset;
-  }
 }
 
 .tab {
@@ -37,15 +31,19 @@
 
 .form {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.row {
+  display: flex;
   gap: 0.75rem;
-  padding: 1.25rem 1.5rem;
+  align-items: center;
 }
 
 .field {
   flex: 1;
-  min-width: 130px;
 
   .MuiOutlinedInput-root {
     background: #fff;
@@ -53,14 +51,19 @@
   }
 }
 
-.fieldWide {
-  flex: 2;
-  min-width: 200px;
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
 
-  .MuiOutlinedInput-root {
-    background: #fff;
-    border-radius: 6px;
-  }
+.fieldLabel {
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .fieldNarrow {
@@ -73,17 +76,16 @@
 }
 
 .submitBtn {
-  background-color: #1565c0 !important;
+  background-color: #000 !important;
   color: #fff !important;
   text-transform: none !important;
   font-size: 0.95rem !important;
   font-weight: 600 !important;
   padding: 0.6rem 1.75rem !important;
   border-radius: 6px !important;
-  white-space: nowrap;
-  flex-shrink: 0;
+  width: 100%;
 
   &:hover {
-    background-color: #0d47a1 !important;
+    background-color: #222 !important;
   }
 }
