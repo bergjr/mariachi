@@ -1,0 +1,30 @@
+// ─── Brand colours ───────────────────────────────────────────────
+$color-primary:        #1565c0;   // main blue (buttons, highlights)
+$color-primary-dark:   #0d47a1;   // hover state for primary
+$color-navy:           #0d1b3e;   // footer, dark surfaces
+$color-navbar-bg:      #1a1a2e;   // scrolled navbar background
+
+// ─── Login button ────────────────────────────────────────────────
+$color-login-bg:       #1565c0;   // login button background
+$color-login-bg-hover: #0d47a1;   // login button hover
+$color-login-text:     #ffffff;   // login button text
+
+// ─── Neutrals ────────────────────────────────────────────────────
+$color-white:          #ffffff;
+$color-black:          #000000;
+$color-surface:        #f8f9fc;   // light page section background
+$color-border:         #e0e4ef;
+
+// ─── Text ────────────────────────────────────────────────────────
+$color-text:           #333333;
+$color-text-muted:     #666666;
+$color-text-on-dark:   rgba(255, 255, 255, 0.88);
+
+// ─── Shadows ─────────────────────────────────────────────────────
+$shadow-card:   0 4px 16px rgba(0, 0, 0, 0.06);
+$shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+$shadow-searchbox:  0 8px 32px rgba(0, 0, 0, 0.25);
+
+// ─── Border radius ───────────────────────────────────────────────
+$radius-sm:   6px;
+$radius-md:   12px;

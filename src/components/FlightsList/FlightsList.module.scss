@@ -1,0 +1,139 @@
+@use '../../styles/variables' as v;
+
+.section {
+  padding: 3rem 2rem 5rem;
+  background-color: v.$color-white;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-weight: 700 !important;
+  color: v.$color-navy;
+  margin-bottom: 1.5rem !important;
+}
+
+.searchBar {
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 2rem !important;
+  background: v.$color-white;
+  border-radius: v.$radius-sm;
+}
+
+.empty {
+  color: v.$color-text-muted;
+  margin-top: 2rem !important;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+
+  @media (max-width: 1100px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 600px)  { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: v.$color-white;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-md;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: v.$shadow-card;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: v.$shadow-card-hover;
+  }
+}
+
+.route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.airport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.icon {
+  color: v.$color-primary;
+  font-size: 1.2rem !important;
+}
+
+.city {
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: v.$color-navy;
+}
+
+.duration {
+  font-size: 0.75rem !important;
+  color: v.$color-text-muted;
+  text-align: center;
+  flex: 1;
+}
+
+.airline {
+  font-size: 0.8rem !important;
+  color: v.$color-text-muted;
+  text-align: center;
+}
+
+.times {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.time {
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  color: v.$color-text;
+}
+
+.stops {
+  font-size: 0.72rem !important;
+  color: v.$color-text-muted;
+  background: v.$color-surface;
+  padding: 0.15rem 0.5rem;
+  border-radius: 99px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid v.$color-border;
+}
+
+.price {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: v.$color-navy;
+}
+
+.btn {
+  background-color: v.$color-primary !important;
+  color: v.$color-white !important;
+  text-transform: none !important;
+  font-size: 0.8rem !important;
+  padding: 0.3rem 1rem !important;
+  border-radius: v.$radius-sm !important;
+
+  &:hover {
+    background-color: v.$color-primary-dark !important;
+  }
+}

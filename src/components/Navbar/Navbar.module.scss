@@ -1,3 +1,5 @@
+@use '../../styles/variables' as v;
+
 .navbar {
   transition: background-color 0.35s ease, box-shadow 0.35s ease;
 }
@@ -8,7 +10,7 @@
 }
 
 .scrolled {
-  background-color: #1a1a2e !important;
+  background-color: v.$color-navbar-bg !important;
 }
 
 .toolbar {
@@ -19,7 +21,7 @@
 }
 
 .logo {
-  color: #fff;
+  color: v.$color-white;
   text-decoration: none;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -39,7 +41,7 @@
 }
 
 .navLink {
-  color: #fff !important;
+  color: v.$color-white !important;
   text-transform: none !important;
   font-size: 0.95rem !important;
   font-weight: 400 !important;
@@ -54,13 +56,13 @@
 }
 
 .loginBtn {
-  color: #fff !important;
-  border-color: rgba(255, 255, 255, 0.7) !important;
+  background-color: v.$color-login-bg !important;
+  color: v.$color-login-text !important;
+  border: none !important;
   text-transform: none !important;
   flex-shrink: 0;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    border-color: #fff !important;
+    background-color: v.$color-login-bg-hover !important;
   }
 }
