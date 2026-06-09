@@ -1,0 +1,66 @@
+.navbar {
+  transition: background-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.transparent {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.scrolled {
+  background-color: #1a1a2e !important;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.logo {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.navLinks {
+  display: flex;
+  gap: 0.25rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navLink {
+  color: #fff !important;
+  text-transform: none !important;
+  font-size: 0.95rem !important;
+  font-weight: 400 !important;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  &.active {
+    font-weight: 600 !important;
+  }
+}
+
+.loginBtn {
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  text-transform: none !important;
+  flex-shrink: 0;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: #fff !important;
+  }
+}

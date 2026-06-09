@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Project-specific ignores
+Interim Report.md
+inspiration.webp
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
