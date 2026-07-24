@@ -26,6 +26,12 @@
   margin-top: 2rem !important;
 }
 
+.loaderWrap {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

@@ -44,7 +44,7 @@ export default function Footer() {
         <Box className={styles.column}>
           <Typography variant="subtitle2" className={styles.columnHeading}>Contact</Typography>
           <Typography variant="body2" className={styles.contactText}>hello@mariachi.travel</Typography>
-          <Typography variant="body2" className={styles.contactText}>+1 (800) 627-4224</Typography>
+          <Typography variant="body2" className={styles.contactText}>+353 444-4125</Typography>
           <Typography variant="body2" className={styles.contactText}>Available 24 / 7</Typography>
         </Box>
 

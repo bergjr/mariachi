@@ -1,0 +1,226 @@
+@use '../../styles/variables' as v;
+
+.paper {
+  background: #4cb944 !important;
+  color: #fff !important;
+
+  :global(.MuiTypography-root)      { color: #fff !important; }
+  :global(.MuiSvgIcon-root)         { color: rgba(255, 255, 255, 0.9) !important; }
+  :global(.MuiDivider-root)         { border-color: rgba(255, 255, 255, 0.25) !important; }
+  :global(.MuiInputLabel-root)      { color: rgba(255, 255, 255, 0.8) !important; }
+  :global(.MuiInputLabel-root.Mui-focused) { color: #fff !important; }
+  :global(.MuiInputLabel-root.Mui-error)   { color: #ffcdd2 !important; }
+  :global(.MuiInputBase-input)      { color: #fff !important; }
+  :global(.MuiOutlinedInput-notchedOutline) { border-color: rgba(255, 255, 255, 0.4) !important; }
+  :global(.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline)       { border-color: rgba(255, 255, 255, 0.7) !important; }
+  :global(.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline) { border-color: #fff !important; }
+  :global(.MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline)   { border-color: #ffcdd2 !important; }
+  :global(.MuiSelect-icon)          { color: rgba(255, 255, 255, 0.7) !important; }
+  :global(.MuiFormHelperText-root)  { color: rgba(255, 255, 255, 0.75) !important; }
+  :global(.MuiFormHelperText-root.Mui-error) { color: #ffcdd2 !important; }
+  :global(.MuiChip-root)            { background: rgba(255, 255, 255, 0.2) !important; color: #fff !important; }
+}
+
+.title {
+  font-family: v.$font-secondary !important;
+  font-weight: 700 !important;
+  color: v.$color-navy !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.titleIcon {
+  color: v.$color-primary;
+  font-size: 1.4rem !important;
+}
+
+.closeBtn {
+  color: rgba(255, 255, 255, 0.8) !important;
+  flex-shrink: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-top: 0.75rem !important;
+}
+
+// ── Step 1: hotel info ────────────────────────────────────────────
+
+.hotelHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: v.$radius-md;
+  padding: 1.25rem 1.5rem;
+}
+
+.hotelIcon {
+  color: v.$color-primary;
+  font-size: 2.8rem !important;
+  flex-shrink: 0;
+}
+
+.hotelName {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: v.$color-navy;
+  line-height: 1.3;
+}
+
+.locationRow {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-top: 0.25rem;
+}
+
+.locationIcon {
+  color: v.$color-text-muted;
+  font-size: 0.95rem !important;
+}
+
+.locationText {
+  font-size: 0.85rem !important;
+  color: v.$color-text-muted;
+}
+
+.stars {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.starIcon {
+  color: #f9a825;
+  font-size: 1.1rem !important;
+}
+
+.divider {
+  margin: 0 !important;
+}
+
+.label {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: v.$color-text-muted;
+  margin-bottom: 0.5rem !important;
+}
+
+.amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.amenityChip {
+  background: rgba(21, 101, 192, 0.08) !important;
+  color: v.$color-primary !important;
+  font-size: 0.75rem !important;
+  border-radius: 99px !important;
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: v.$radius-sm;
+  padding: 0.75rem 1rem;
+}
+
+.dateRow {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.dateField {
+  flex: 1;
+  min-width: 0;
+}
+
+.dateError {
+  font-size: 0.8rem !important;
+  color: #ffcdd2 !important;
+  margin-top: 0.4rem !important;
+}
+
+.priceLabel {
+  font-size: 0.85rem !important;
+  color: v.$color-text-muted;
+}
+
+.price {
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  color: v.$color-primary;
+}
+
+// ── Step 2: payment form ──────────────────────────────────────────
+
+.paymentNote {
+  font-size: 0.88rem !important;
+  color: v.$color-text-muted;
+  margin-bottom: 0.25rem !important;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+
+  > * {
+    flex: 1;
+  }
+}
+
+// ── Actions ───────────────────────────────────────────────────────
+
+.actions {
+  padding: 1rem 1.5rem !important;
+  gap: 0.5rem;
+}
+
+.cancelBtn {
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-transform: none !important;
+  font-family: v.$font-primary !important;
+}
+
+.primaryBtn {
+  background-color: #fff !important;
+  color: #4cb944 !important;
+  text-transform: none !important;
+  font-family: v.$font-primary !important;
+  font-weight: 700 !important;
+  padding: 0.4rem 1.4rem !important;
+  border-radius: v.$radius-sm !important;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  &:disabled {
+    opacity: 0.65 !important;
+  }
+}

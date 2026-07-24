@@ -4,11 +4,11 @@
   --bg: #ffffff;
   --border: #e0e4ef;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: 'Outfit', system-ui, 'Segoe UI', sans-serif;
+  --heading: 'Outfit', system-ui, 'Segoe UI', sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
-  font: 18px/145% var(--sans);
+  font: 300 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light;
   color: var(--text);
@@ -25,6 +25,7 @@
 
 body {
   margin: 0;
+  font-family: var(--sans);
 }
 
 #root {
@@ -77,4 +78,22 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+/* ── MUI font overrides ────────────────────────────────────────── */
+.MuiTypography-root,
+.MuiButtonBase-root,
+.MuiInputBase-root,
+.MuiInputBase-input,
+.MuiFormLabel-root,
+.MuiMenuItem-root,
+.MuiTab-root,
+.MuiChip-label,
+.MuiSelect-select {
+  font-family: var(--sans) !important;
+}
+
+.MuiTypography-h1,
+.MuiTypography-h2 {
+  font-family: var(--heading) !important;
 }

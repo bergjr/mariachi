@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  min-height: 50vh;
+  min-height: 85vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -37,12 +37,14 @@
 
 .title {
   color: #fff;
+  font-family: var(--heading);
   font-weight: 700;
   line-height: 1.15;
 }
 
 .subtitle {
   color: rgba(255, 255, 255, 0.88);
+  font-family: var(--sans);
   font-size: 1rem;
   line-height: 1.6;
   max-width: 480px;

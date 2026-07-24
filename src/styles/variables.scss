@@ -1,12 +1,16 @@
+// ─── Typography ──────────────────────────────────────────────────
+$font-primary:   'Outfit', system-ui, 'Segoe UI', sans-serif;
+$font-secondary: 'Outfit', system-ui, 'Segoe UI', sans-serif;
+
 // ─── Brand colours ───────────────────────────────────────────────
-$color-primary:        #1565c0;   // main blue (buttons, highlights)
-$color-primary-dark:   #0d47a1;   // hover state for primary
-$color-navy:           #0d1b3e;   // footer, dark surfaces
+$color-primary:        #4cb944;   // main green (buttons, highlights)
+$color-primary-dark:   #399132;   // hover state for primary
+$color-navy:           #399132;   // dark green (headings, page headers)
 $color-navbar-bg:      #1a1a2e;   // scrolled navbar background
 
 // ─── Login button ────────────────────────────────────────────────
-$color-login-bg:       #1565c0;   // login button background
-$color-login-bg-hover: #0d47a1;   // login button hover
+$color-login-bg:       #4cb944;   // login button background
+$color-login-bg-hover: #399132;   // login button hover
 $color-login-text:     #ffffff;   // login button text
 
 // ─── Neutrals ────────────────────────────────────────────────────

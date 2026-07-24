@@ -1,0 +1,138 @@
+@use '../../styles/variables' as v;
+
+.section {
+  background: v.$color-white;
+  border-radius: v.$radius-md;
+  padding: 1.75rem 2rem;
+  box-shadow: v.$shadow-card;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+}
+
+.sectionIcon {
+  color: v.$color-primary;
+  font-size: 1.5rem !important;
+}
+
+.sectionTitle {
+  font-weight: 700 !important;
+  color: v.$color-navy !important;
+}
+
+.chip {
+  background-color: v.$color-primary !important;
+  color: #fff !important;
+  font-size: 0.72rem !important;
+}
+
+.divider { margin-bottom: 1.5rem !important; }
+
+.empty {
+  color: v.$color-text-muted !important;
+  font-size: 0.9rem !important;
+  padding: 0.5rem 0 !important;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+
+  @media (max-width: 1100px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 600px)  { grid-template-columns: 1fr; }
+}
+
+.card {
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-md;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  transition: box-shadow 0.2s ease;
+
+  &:hover { box-shadow: v.$shadow-card; }
+}
+
+.cardBadge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: v.$color-primary;
+  background: rgba(21, 101, 192, 0.08);
+  border-radius: 99px;
+  padding: 0.1rem 0.6rem;
+  align-self: flex-start;
+}
+
+.cardTitle {
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: v.$color-navy !important;
+  line-height: 1.3;
+}
+
+.detail {
+  font-size: 0.8rem !important;
+  color: v.$color-text-muted !important;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 0.6rem;
+  border-top: 1px solid v.$color-border;
+}
+
+.price {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: v.$color-primary !important;
+
+  span {
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: v.$color-text-muted;
+    margin-left: 2px;
+  }
+}
+
+.cancelBtn {
+  text-transform: none !important;
+  font-size: 0.78rem !important;
+  border-radius: v.$radius-sm !important;
+}
+
+.statusChip {
+  font-size: 0.65rem !important;
+  height: 18px !important;
+  margin-top: 0.2rem !important;
+
+  &.confirmed { background: #e8f5e9 !important; color: #2e7d32 !important; }
+  &.cancelled { background: #fce4ec !important; color: #c62828 !important; }
+}
+
+// Car-specific
+.carMeta {
+  display: flex;
+  gap: 1rem;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.metaIcon {
+  color: v.$color-text-muted;
+  font-size: 0.9rem !important;
+}

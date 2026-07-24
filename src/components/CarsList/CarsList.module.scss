@@ -1,0 +1,148 @@
+@use '../../styles/variables' as v;
+
+.section {
+  padding: 3rem 2rem 5rem;
+  background-color: v.$color-white;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-weight: 700 !important;
+  color: v.$color-navy;
+  margin-bottom: 1.5rem !important;
+}
+
+.searchBar {
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 2rem !important;
+  background: v.$color-white;
+  border-radius: v.$radius-sm;
+}
+
+.empty {
+  color: v.$color-text-muted;
+  margin-top: 2rem !important;
+}
+
+.loaderWrap {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+
+  @media (max-width: 1100px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 600px)  { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: v.$color-white;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-md;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: v.$shadow-card;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: v.$shadow-card-hover;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.carIcon {
+  color: v.$color-primary;
+  font-size: 2.2rem !important;
+}
+
+.name {
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: v.$color-navy;
+  line-height: 1.3;
+}
+
+.category {
+  font-size: 0.75rem !important;
+  color: v.$color-text-muted;
+}
+
+.details {
+  display: flex;
+  gap: 1rem;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.detailIcon {
+  color: v.$color-text-muted;
+  font-size: 0.95rem !important;
+}
+
+.detailText {
+  font-size: 0.8rem !important;
+  color: v.$color-text-muted;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.locationText {
+  font-size: 0.8rem !important;
+  color: v.$color-text-muted;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid v.$color-border;
+}
+
+.price {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: v.$color-primary;
+
+  span {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: v.$color-text-muted;
+    margin-left: 2px;
+  }
+}
+
+.btn {
+  background-color: v.$color-primary !important;
+  border-radius: v.$radius-sm !important;
+  text-transform: none !important;
+  font-size: 0.8rem !important;
+  padding: 0.3rem 1rem !important;
+
+  &:hover {
+    background-color: v.$color-primary-dark !important;
+  }
+}

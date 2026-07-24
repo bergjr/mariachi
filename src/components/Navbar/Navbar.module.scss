@@ -10,7 +10,7 @@
 }
 
 .scrolled {
-  background-color: v.$color-navbar-bg !important;
+  background-color: #4cb944 !important;
 }
 
 .toolbar {
@@ -23,13 +23,25 @@
 .logo {
   color: v.$color-white;
   text-decoration: none;
+  font-family: v.$font-primary;
   font-weight: 700;
+  font-size: 1.25rem;
   letter-spacing: 0.1em;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-shadow: 2px 10px 4px rgba(0, 0, 0, 0.35);
 
   &:hover {
     opacity: 0.85;
   }
+}
+
+.logoImg {
+  height: 42px;
+  width: auto;
+  display: block;
 }
 
 .navLinks {
@@ -38,11 +50,16 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .navLink {
   color: v.$color-white !important;
   text-transform: none !important;
+  font-family: v.$font-primary !important;
   font-size: 0.95rem !important;
   font-weight: 400 !important;
 
@@ -55,14 +72,148 @@
   }
 }
 
+.adminNavLink {
+  color: rgba(255, 220, 100, 0.92) !important;
+  font-weight: 500 !important;
+
+  &:hover {
+    background-color: rgba(255, 220, 100, 0.12) !important;
+  }
+
+  &.active {
+    font-weight: 700 !important;
+  }
+}
+
+.authArea {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.adminLink {
+  color: v.$color-white !important;
+  text-transform: none !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 6px !important;
+  padding: 0.25rem 0.85rem !important;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  &.active {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+  }
+}
+
 .loginBtn {
-  background-color: v.$color-login-bg !important;
+  background-color: #399132 !important;
   color: v.$color-login-text !important;
   border: none !important;
   text-transform: none !important;
   flex-shrink: 0;
 
   &:hover {
-    background-color: v.$color-login-bg-hover !important;
+    background-color: #2d7027 !important;
+  }
+}
+
+// ─── Hamburger (mobile only) ──────────────────────────────────────────────────
+.hamburger {
+  color: #fff !important;
+}
+
+// ─── Mobile Drawer ────────────────────────────────────────────────────────────
+.drawerPaper {
+  width: 270px;
+  background: #4cb944 !important;
+  color: #fff !important;
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.drawerLogo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  text-decoration: none;
+  font-family: v.$font-primary;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.drawerItem {
+  color: #fff !important;
+  font-family: v.$font-primary !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  padding: 0.75rem 1.5rem !important;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.12) !important;
+  }
+
+  :global(.MuiListItemText-primary) {
+    font-family: v.$font-primary;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+.drawerDivider {
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  margin: 0.25rem 0 !important;
+}
+
+.drawerAuth {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+
+.drawerBtn {
+  color: #fff !important;
+  text-transform: none !important;
+  font-family: v.$font-primary !important;
+  font-weight: 500 !important;
+  justify-content: flex-start !important;
+  padding: 0.5rem 0.75rem !important;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.12) !important;
+  }
+}
+
+.drawerSignOut {
+  background: #399132 !important;
+  color: #fff !important;
+  text-transform: none !important;
+  font-family: v.$font-primary !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  padding: 0.5rem 0.75rem !important;
+  margin-top: 0.25rem !important;
+
+  &:hover {
+    background: #2d7027 !important;
   }
 }

@@ -26,6 +26,12 @@
   margin-top: 2rem !important;
 }
 
+.loaderWrap {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -119,6 +125,18 @@
   border-top: 1px solid v.$color-border;
 }
 
+.footerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
+.seats {
+  font-size: 0.72rem !important;
+  color: v.$color-text-muted;
+}
+
 .price {
   font-size: 1.1rem !important;
   font-weight: 700 !important;
@@ -135,5 +153,10 @@
 
   &:hover {
     background-color: v.$color-primary-dark !important;
+  }
+
+  &:disabled {
+    background-color: v.$color-border !important;
+    color: v.$color-text-muted !important;
   }
 }
