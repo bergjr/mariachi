@@ -148,6 +148,8 @@ export default function SearchBox() {
     const params = new URLSearchParams()
     if (flightFrom) params.set('from', flightFrom)
     if (flightTo)   params.set('to',   flightTo)
+    if (flightDeparture) params.set('departure', flightDeparture)
+    if (flightReturn)    params.set('return', flightReturn)
     if (passengers > 1) params.set('passengers', passengers)
     navigate(`/flights${params.size ? '?' + params.toString() : ''}`)
   }
