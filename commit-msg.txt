@@ -1,0 +1,9 @@
+Fix mojibake in AdminFlights.jsx (euro sign, arrow, en dash, accented u)
+
+Special characters (euro sign, right arrow, en dash, u-acute) had been
+corrupted into UTF-8-decoded-as-Latin-1 mojibake during an earlier
+edit pass. Restored the correct UTF-8 characters so the price, route
+arrow, time separator, and the "Cancun" placeholder render correctly
+again instead of showing garbled byte sequences.
+
+Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>
