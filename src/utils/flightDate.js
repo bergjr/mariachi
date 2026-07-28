@@ -1,4 +1,11 @@
 import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+
+// Required so dayjs (and the MUI DateTimePicker's AdapterDayjs) can parse
+// values typed in DD/MM/YYYY HH:mm — without it, typed input like
+// "18/07/2026 14:00" falls back to the native Date parser and resolves to
+// Invalid Date, which is exactly what caused the NaN/NaN/NaN NaN:NaN bug.
+dayjs.extend(customParseFormat)
 
 // Display/edit format requested by users: traditional DD/MM/YYYY HH:MM (not US-style).
 export const FLIGHT_DATE_FORMAT = 'DD/MM/YYYY HH:mm'
@@ -22,8 +29,12 @@ export function parseFlightDateTime(value) {
       const anchored = dayjs(`${dayjs().format('YYYY-MM-DD')}T${trimmed}`)
       return anchored.isValid() ? anchored : null
     }
-    const parsed = dayjs(trimmed)
-    return parsed.isValid() ? parsed : null
+    // Try strict ISO/native parsing first, then fall back to our own
+    // DD/MM/YYYY HH:mm display format in case a value was ever stored that way.
+    const isoParsed = dayjs(trimmed)
+    if (isoParsed.isValid()) return isoParsed
+    const displayParsed = dayjs(trimmed, FLIGHT_DATE_FORMAT, true)
+    return displayParsed.isValid() ? displayParsed : null
   }
 
   const parsed = dayjs(value)
