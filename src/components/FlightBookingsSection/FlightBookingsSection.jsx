@@ -6,13 +6,10 @@ import Divider from '@mui/material/Divider'
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff'
 import FlightLandIcon from '@mui/icons-material/FlightLand'
 import CancelIcon from '@mui/icons-material/Cancel'
+import { formatFlightDateTime } from '../../utils/flightDate'
 import styles from './FlightBookingsSection.module.scss'
 
-const fmtDate = (iso) => {
-  if (!iso) return '—'
-  const d = new Date(iso)
-  return `${String(d.getUTCDate()).padStart(2,'0')}/${String(d.getUTCMonth()+1).padStart(2,'0')}/${d.getUTCFullYear()} ${String(d.getUTCHours()).padStart(2,'0')}:${String(d.getUTCMinutes()).padStart(2,'0')}`
-}
+const fmtDate = (iso) => formatFlightDateTime(iso)
 
 const STATUS_LABEL = { pending: 'Confirmed', confirmed: 'Confirmed', cancelled: 'Cancelled' }
 const STATUS_CLASS = { pending: 'confirmed', confirmed: 'confirmed', cancelled: 'cancelled' }

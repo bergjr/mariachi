@@ -15,6 +15,7 @@ import { getFlights } from '../../api/flights'
 import { useAuth } from '../../context/AuthContext'
 import { useBookings } from '../../context/BookingsContext'
 import FlightBookingModal from '../FlightBookingModal/FlightBookingModal'
+import { formatFlightDateTime } from '../../utils/flightDate'
 import styles from './FlightsList.module.scss'
 
 export default function FlightsList() {
@@ -54,15 +55,7 @@ export default function FlightsList() {
     }
   }
 
-  const fmt = (iso) => {
-    if (!iso) return ''
-    const d = new Date(iso)
-    const dd = String(d.getUTCDate()).padStart(2, '0')
-    const mm = String(d.getUTCMonth() + 1).padStart(2, '0')
-    const hh = String(d.getUTCHours()).padStart(2, '0')
-    const min = String(d.getUTCMinutes()).padStart(2, '0')
-    return `${dd}/${mm} ${hh}:${min}`
-  }
+  const fmt = (iso) => formatFlightDateTime(iso, '')
 
   return (
     <Box component="section" className={styles.section}>

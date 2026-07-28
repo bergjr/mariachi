@@ -19,20 +19,13 @@ import FlightLandIcon from '@mui/icons-material/FlightLand'
 import CreditCardIcon from '@mui/icons-material/CreditCard'
 import PeopleIcon from '@mui/icons-material/People'
 import CloseIcon from '@mui/icons-material/Close'
+import { formatFlightDateTime } from '../../utils/flightDate'
 import styles from './FlightBookingModal.module.scss'
 
 const EMPTY_PAYMENT = { cardHolder: '', cardNumber: '', expiry: '', cvv: '' }
 const EMPTY_ERRORS  = { cardHolder: '', cardNumber: '', expiry: '', cvv: '' }
 
-function fmtDate(iso) {
-  if (!iso) return ''
-  const d = new Date(iso)
-  const dd  = String(d.getUTCDate()).padStart(2, '0')
-  const mm  = String(d.getUTCMonth() + 1).padStart(2, '0')
-  const hh  = String(d.getUTCHours()).padStart(2, '0')
-  const min = String(d.getUTCMinutes()).padStart(2, '0')
-  return `${dd}/${mm} ${hh}:${min}`
-}
+const fmtDate = (iso) => formatFlightDateTime(iso, '')
 
 /** Format raw digits as groups of 4, max 16 digits → "1234 5678 9012 3456" */
 function formatCardNumber(raw) {
