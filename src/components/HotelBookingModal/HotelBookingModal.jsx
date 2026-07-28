@@ -305,7 +305,7 @@ export default function HotelBookingModal({ open, hotel, onClose, onConfirm }) {
               disabled={loading}
               startIcon={loading ? <CircularProgress size={16} color="inherit" /> : null}
             >
-              {loading ? 'Processing…' : `Pay €${hotel.price}/night`}
+              {loading ? 'Processing…' : `Pay €${totalPrice}`}
             </Button>
           </DialogActions>
         </>

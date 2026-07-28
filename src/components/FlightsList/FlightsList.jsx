@@ -15,12 +15,14 @@ import { getFlights } from '../../api/flights'
 import { useAuth } from '../../context/AuthContext'
 import { useBookings } from '../../context/BookingsContext'
 import FlightBookingModal from '../FlightBookingModal/FlightBookingModal'
-import { formatFlightDateTime } from '../../utils/flightDate'
+import { formatFlightDateTime, parseFlightDateTime } from '../../utils/flightDate'
 import styles from './FlightsList.module.scss'
 
 export default function FlightsList() {
   const [searchParams] = useSearchParams()
   const initialQuery = [searchParams.get('from'), searchParams.get('to')].filter(Boolean).join(' ')
+  const departureParam = searchParams.get('departure')
+  const returnParam = searchParams.get('return')
 
   const [flights,  setFlights]  = useState([])
   const [loading,  setLoading]  = useState(true)
@@ -40,9 +42,20 @@ export default function FlightsList() {
 
   const refreshFlights = () => getFlights().then(setFlights).catch(() => {})
 
-  const filtered = flights.filter(({ from, to, airline }) =>
-    [from, to, airline].some((v) => v.toLowerCase().includes(query.toLowerCase()))
-  )
+  const filtered = flights.filter(({ from, to, airline, departure }) => {
+    const matchesQuery = [from, to, airline].some((v) => v.toLowerCase().includes(query.toLowerCase()))
+    if (!matchesQuery) return false
+    if (!departureParam) return true
+
+    const flightDay = parseFlightDateTime(departure)
+    if (!flightDay) return false
+
+    const rangeStart = parseFlightDateTime(departureParam)
+    const rangeEnd = parseFlightDateTime(returnParam) || rangeStart
+    if (!rangeStart) return true
+
+    return !flightDay.isBefore(rangeStart, 'day') && !flightDay.isAfter(rangeEnd, 'day')
+  })
 
   const handleBook = async (flight, passengers = 1) => {
     if (!user) { openLoginModal(); return }
