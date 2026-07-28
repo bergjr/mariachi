@@ -12,16 +12,16 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import CloseIcon from '@mui/icons-material/Close'
 import SaveIcon from '@mui/icons-material/Save'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import { getFlights, createFlight, updateFlight, deleteFlight } from '../../api/flights'
+import { parseFlightDateTime, formatFlightDateTime, toFlightDateTimePayload, FLIGHT_DATE_FORMAT } from '../../utils/flightDate'
 import styles from './AdminFlights.module.scss'
 
-const EMPTY = { from: '', to: '', airline: '', departure: '', arrival: '', duration: '', price: '', stops: 'Non-stop' }
+const EMPTY = { from: '', to: '', airline: '', departure: null, arrival: null, duration: '', price: '', stops: 'Non-stop' }
 
-const fmt = (iso) => {
-  if (!iso) return ''
-  const d = new Date(iso)
-  return `${String(d.getUTCDate()).padStart(2,'0')}/${String(d.getUTCMonth()+1).padStart(2,'0')} ${String(d.getUTCHours()).padStart(2,'0')}:${String(d.getUTCMinutes()).padStart(2,'0')}`
-}
+const fmt = (value) => formatFlightDateTime(value)
 
 export default function AdminFlights() {
   const [list,      setList]      = useState([])
@@ -38,8 +38,8 @@ export default function AdminFlights() {
     if (!form.from.trim())      e.from      = 'Required'
     if (!form.to.trim())        e.to        = 'Required'
     if (!form.airline.trim())   e.airline   = 'Required'
-    if (!form.departure.trim()) e.departure = 'Required'
-    if (!form.arrival.trim())   e.arrival   = 'Required'
+    if (!form.departure || !parseFlightDateTime(form.departure)) e.departure = 'Required'
+    if (!form.arrival || !parseFlightDateTime(form.arrival))     e.arrival   = 'Required'
     if (!form.duration.trim())  e.duration  = 'Required'
     if (!form.price || isNaN(Number(form.price)) || Number(form.price) <= 0) e.price = 'Valid price required'
     return e
@@ -47,8 +47,8 @@ export default function AdminFlights() {
 
   const handleEdit = (f) => {
     setEditingId(f._id)
-    setForm({ from: f.from, to: f.to, airline: f.airline, departure: f.departure,
-      arrival: f.arrival, duration: f.duration, price: String(f.price), stops: f.stops })
+    setForm({ from: f.from, to: f.to, airline: f.airline, departure: parseFlightDateTime(f.departure),
+      arrival: parseFlightDateTime(f.arrival), duration: f.duration, price: String(f.price), stops: f.stops })
     setErrors({})
   }
 
@@ -59,12 +59,14 @@ export default function AdminFlights() {
     if (Object.keys(e).length) { setErrors(e); return }
     setSaving(true)
     try {
+      const payload = { ...form, price: Number(form.price),
+        departure: toFlightDateTimePayload(form.departure), arrival: toFlightDateTimePayload(form.arrival) }
       if (editingId) {
-        const updated = await updateFlight(editingId, { ...form, price: Number(form.price) })
+        const updated = await updateFlight(editingId, payload)
         setList((l) => l.map((f) => f._id === editingId ? updated : f))
         setEditingId(null)
       } else {
-        const created = await createFlight({ ...form, price: Number(form.price) })
+        const created = await createFlight(payload)
         setList((l) => [...l, created])
       }
       setForm(EMPTY); setErrors({})
@@ -90,19 +92,33 @@ export default function AdminFlights() {
         {editingId && <Button size="small" startIcon={<CloseIcon />} onClick={handleCancelEdit} className={styles.cancelBtn}>Cancel</Button>}
       </Typography>
 
-      <Box className={styles.formGrid}>
-        {field('From', 'from', 'Madrid')}
-        {field('To', 'to', 'Cancún')}
-        {field('Airline', 'airline', 'Iberia')}
-        {field('Departure', 'departure', '10:00')}
-        {field('Arrival', 'arrival', '15:30')}
-        {field('Duration', 'duration', '10h 30m')}
-        {field('Price (€)', 'price', '420')}
-        <TextField select label="Stops" size="small" value={form.stops}
-          onChange={(e) => setForm({ ...form, stops: e.target.value })} className={styles.field}>
-          {['Non-stop', '1 stop', '2+ stops'].map((s) => <MenuItem key={s} value={s}>{s}</MenuItem>)}
-        </TextField>
-      </Box>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Box className={styles.formGrid}>
+          {field('From', 'from', 'Madrid')}
+          {field('To', 'to', 'CancÃºn')}
+          {field('Airline', 'airline', 'Iberia')}
+          <DateTimePicker
+            label="Departure"
+            format={FLIGHT_DATE_FORMAT}
+            value={form.departure}
+            onChange={(value) => setForm({ ...form, departure: value })}
+            slotProps={{ textField: { size: 'small', error: !!errors.departure, helperText: errors.departure, className: styles.field } }}
+          />
+          <DateTimePicker
+            label="Arrival"
+            format={FLIGHT_DATE_FORMAT}
+            value={form.arrival}
+            onChange={(value) => setForm({ ...form, arrival: value })}
+            slotProps={{ textField: { size: 'small', error: !!errors.arrival, helperText: errors.arrival, className: styles.field } }}
+          />
+          {field('Duration', 'duration', '10h 30m')}
+          {field('Price (â‚¬)', 'price', '420')}
+          <TextField select label="Stops" size="small" value={form.stops}
+            onChange={(e) => setForm({ ...form, stops: e.target.value })} className={styles.field}>
+            {['Non-stop', '1 stop', '2+ stops'].map((s) => <MenuItem key={s} value={s}>{s}</MenuItem>)}
+          </TextField>
+        </Box>
+      </LocalizationProvider>
 
       <Button variant="contained" className={styles.addBtn} onClick={handleSave} disabled={saving}
         startIcon={saving ? <CircularProgress size={16} color="inherit" /> : editingId ? <SaveIcon /> : <AddIcon />}>
@@ -121,9 +137,9 @@ export default function AdminFlights() {
           </Box>
           {list.map((f) => (
             <Box key={f._id} className={`${styles.tableRow} ${editingId === f._id ? styles.tableRowEditing : ''}`}>
-              <span>{f.from} → {f.to}</span><span>{f.airline}</span>
-              <span>{fmt(f.departure)} – {fmt(f.arrival)}</span><span>{f.duration}</span>
-              <span>{f.stops}</span><span>€{f.price}</span>
+              <span>{f.from} â†’ {f.to}</span><span>{f.airline}</span>
+              <span>{fmt(f.departure)} â€“ {fmt(f.arrival)}</span><span>{f.duration}</span>
+              <span>{f.stops}</span><span>â‚¬{f.price}</span>
               <span className={styles.rowActions}>
                 <Button size="small" onClick={() => handleEdit(f)} disabled={!!editingId && editingId !== f._id}><EditIcon fontSize="small" /></Button>
                 <Button size="small" color="error" onClick={() => handleDelete(f._id)}><DeleteIcon fontSize="small" /></Button>
