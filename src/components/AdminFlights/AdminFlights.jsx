@@ -95,7 +95,7 @@ export default function AdminFlights() {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Box className={styles.formGrid}>
           {field('From', 'from', 'Madrid')}
-          {field('To', 'to', 'CancÃºn')}
+          {field('To', 'to', 'Cancún')}
           {field('Airline', 'airline', 'Iberia')}
           <DateTimePicker
             label="Departure"
@@ -112,7 +112,7 @@ export default function AdminFlights() {
             slotProps={{ textField: { size: 'small', error: !!errors.arrival, helperText: errors.arrival, className: styles.field } }}
           />
           {field('Duration', 'duration', '10h 30m')}
-          {field('Price (â‚¬)', 'price', '420')}
+          {field('Price (€)', 'price', '420')}
           <TextField select label="Stops" size="small" value={form.stops}
             onChange={(e) => setForm({ ...form, stops: e.target.value })} className={styles.field}>
             {['Non-stop', '1 stop', '2+ stops'].map((s) => <MenuItem key={s} value={s}>{s}</MenuItem>)}
@@ -137,9 +137,9 @@ export default function AdminFlights() {
           </Box>
           {list.map((f) => (
             <Box key={f._id} className={`${styles.tableRow} ${editingId === f._id ? styles.tableRowEditing : ''}`}>
-              <span>{f.from} â†’ {f.to}</span><span>{f.airline}</span>
-              <span>{fmt(f.departure)} â€“ {fmt(f.arrival)}</span><span>{f.duration}</span>
-              <span>{f.stops}</span><span>â‚¬{f.price}</span>
+              <span>{f.from} → {f.to}</span><span>{f.airline}</span>
+              <span>{fmt(f.departure)} – {fmt(f.arrival)}</span><span>{f.duration}</span>
+              <span>{f.stops}</span><span>€{f.price}</span>
               <span className={styles.rowActions}>
                 <Button size="small" onClick={() => handleEdit(f)} disabled={!!editingId && editingId !== f._id}><EditIcon fontSize="small" /></Button>
                 <Button size="small" color="error" onClick={() => handleDelete(f._id)}><DeleteIcon fontSize="small" /></Button>
