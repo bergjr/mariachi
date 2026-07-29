@@ -7,6 +7,11 @@ export function AuthProvider({ children }) {
   const [user,  setUser]  = useState(null)
   const [token, setToken] = useState(() => localStorage.getItem('token'))
   const [loginModalOpen, setLoginModalOpen] = useState(false)
+  // True while we're re-validating a stored token on initial load. Route guards
+  // (e.g. the admin page) should wait for this before deciding to redirect,
+  // otherwise a legitimate admin refreshing /admin would be bounced out
+  // for a moment before their session finishes loading.
+  const [authLoading, setAuthLoading] = useState(() => !!localStorage.getItem('token'))
 
   // On load: if a token exists, re-fetch fresh user from server to avoid stale localStorage
   useEffect(() => {
@@ -23,6 +28,7 @@ export function AuthProvider({ children }) {
         setToken(null)
         setUser(null)
       })
+      .finally(() => setAuthLoading(false))
   }, [token])
 
   const _persist = (token, user) => {
@@ -63,7 +69,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={{
-      user, token,
+      user, token, authLoading,
       login, register, logout, updateUser,
       loginModalOpen, openLoginModal, closeLoginModal,
     }}>
