@@ -43,7 +43,13 @@ export default function FlightsList() {
   const refreshFlights = () => getFlights().then(setFlights).catch(() => {})
 
   const filtered = flights.filter(({ from, to, airline, departure }) => {
-    const matchesQuery = [from, to, airline].some((v) => v.toLowerCase().includes(query.toLowerCase()))
+    // Match every typed word against the combined fields (not the whole query as
+    // a single substring) so "From" + "To" values entered separately in the
+    // SearchBox — which get joined into one query string — still both match,
+    // even though neither the `from` nor the `to` field alone contains both.
+    const haystack = `${from} ${to} ${airline}`.toLowerCase()
+    const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean)
+    const matchesQuery = words.every((w) => haystack.includes(w))
     if (!matchesQuery) return false
     if (!departureParam) return true
 
