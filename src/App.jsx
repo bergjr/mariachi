@@ -8,6 +8,7 @@ import Flights from './pages/Flights/Flights'
 import Hotels from './pages/Hotels/Hotels'
 import RentACar from './pages/RentACar/RentACar'
 import Admin from './pages/Admin/Admin'
+import RequireAdmin from './components/RequireAdmin/RequireAdmin'
 import MyBookings from './pages/MyBookings/MyBookings'
 import Account from './pages/Account/Account'
 import './App.css'
@@ -37,7 +38,7 @@ function App() {
               <Route path="/flights" element={<Flights />} />
               <Route path="/hotels" element={<Hotels />} />
               <Route path="/rent-a-car" element={<RentACar />} />
-              <Route path="/admin" element={<Admin />} />
+              <Route path="/admin" element={<RequireAdmin><Admin /></RequireAdmin>} />
               <Route path="/my-bookings" element={<MyBookings />} />
               <Route path="/account" element={<Account />} />
             </Route>
